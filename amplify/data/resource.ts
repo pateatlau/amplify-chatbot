@@ -1,30 +1,38 @@
-import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
+import { type ClientSchema, a, defineData } from '@aws-amplify/backend';
 
-/*== STEP 1 ===============================================================
-The section below creates a Todo database table with a "content" field. Try
-adding a new "isDone" field as a boolean. The authorization rule below
-specifies that any user authenticated via an API key can "create", "read",
-"update", and "delete" any "Todo" records.
-=========================================================================*/
 const schema = a.schema({
-  Todo: a
-    .model({
-      content: a.string(),
+  // This will add a new conversation route to your Amplify Data backend.
+  chat: a
+    .conversation({
+      aiModel: a.ai.model('Claude 3 Haiku'),
+      systemPrompt: 'You are a helpful assistant',
     })
-    .authorization((allow) => [allow.publicApiKey()]),
+    .authorization((allow) => allow.owner()),
+
+  // This adds a new generation route to your Amplify Data backend
+  generateRecipe: a
+    .generation({
+      aiModel: a.ai.model('Claude 3 Haiku'),
+      systemPrompt: 'You are a helpful assistant that generates recipes.',
+    })
+    .arguments({
+      description: a.string(),
+    })
+    .returns(
+      a.customType({
+        name: a.string(),
+        ingredients: a.string().array(),
+        instructions: a.string(),
+      })
+    )
+    .authorization((allow) => allow.authenticated()),
 });
 
+// TODO:
 export type Schema = ClientSchema<typeof schema>;
 
 export const data = defineData({
   schema,
-  authorizationModes: {
-    defaultAuthorizationMode: "apiKey",
-    // API Key is used for a.allow.public() rules
-    apiKeyAuthorizationMode: {
-      expiresInDays: 30,
-    },
-  },
 });
 
 /*== STEP 2 ===============================================================

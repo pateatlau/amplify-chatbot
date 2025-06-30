@@ -1,40 +1,72 @@
-import { useEffect, useState } from "react";
-import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
+import * as React from 'react';
+import {
+  Flex,
+  TextAreaField,
+  Loader,
+  Text,
+  View,
+  Button,
+} from '@aws-amplify/ui-react';
+import { useAIGeneration } from './client';
+import { useAuthenticator } from '@aws-amplify/ui-react';
 
-const client = generateClient<Schema>();
+export default function App() {
+  const [description, setDescription] = React.useState('');
+  const [{ data, isLoading }, generateRecipe] =
+    useAIGeneration('generateRecipe');
+  const { signOut } = useAuthenticator();
 
-function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
-  useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }, []);
-
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
-  }
+  const handleClick = async () => {
+    generateRecipe({ description });
+  };
 
   return (
-    <main>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Review next step of this tutorial.
-        </a>
-      </div>
-    </main>
+    <section className="p-10">
+      <Flex direction="column">
+        <div className="flex flex-row justify-between align-middle">
+          <h1 className="text-3xl text-orange-600">Food Recipe Assistant</h1>
+          <button
+            className="p-2 text-white bg-red-500 border rounded-md cursor-pointer border-neutral-500 hover:bg-red-700"
+            onClick={signOut}
+          >
+            Sign out
+          </button>
+        </div>
+        <Flex direction="column">
+          <TextAreaField
+            autoResize
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            label="Prompt"
+            placeholder="Please enter your prompt here"
+          />
+          <Button
+            onClick={handleClick}
+            variation="primary"
+          >
+            Generate recipe
+          </Button>
+        </Flex>
+        {isLoading ? (
+          <Loader variation="linear" />
+        ) : (
+          <div className="p-5 mt-5 overflow-auto border-2 border-gray-200 rounded-lg">
+            <Text fontWeight="bold">{data?.name}</Text>
+            <View as="ul">
+              {data?.ingredients?.map((ingredient) => (
+                <View
+                  as="li"
+                  key={ingredient}
+                >
+                  {ingredient}
+                </View>
+              ))}
+            </View>
+            <h2 className="mt-5 mb-2 font-bold">INSTRUCTIONS:</h2>
+            <Text>{data?.instructions ? data?.instructions : ''}</Text>
+          </div>
+        )}
+      </Flex>
+    </section>
   );
 }
-
-export default App;
