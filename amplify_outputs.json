@@ -1,0 +1,1067 @@
+{
+  "auth": {
+    "user_pool_id": "ap-south-1_kjWDo4RWr",
+    "aws_region": "ap-south-1",
+    "user_pool_client_id": "2rcdrh0mg8igievbo3ehsl8773",
+    "identity_pool_id": "ap-south-1:7a0c4997-14de-423e-b4ee-9f0263259b70",
+    "mfa_methods": [],
+    "standard_required_attributes": [
+      "email"
+    ],
+    "username_attributes": [
+      "email"
+    ],
+    "user_verification_types": [
+      "email"
+    ],
+    "mfa_configuration": "NONE",
+    "password_policy": {
+      "min_length": 8,
+      "require_lowercase": true,
+      "require_numbers": true,
+      "require_symbols": true,
+      "require_uppercase": true
+    },
+    "unauthenticated_identities_enabled": true
+  },
+  "data": {
+    "url": "https://nemq3ejbjzcjlmhfbezjgs4ajm.appsync-api.ap-south-1.amazonaws.com/graphql",
+    "aws_region": "ap-south-1",
+    "api_key": "da2-6swc5lcxxza3hl6z2psrwsy4ka",
+    "default_authorization_type": "API_KEY",
+    "authorization_types": [
+      "AMAZON_COGNITO_USER_POOLS",
+      "AWS_IAM"
+    ],
+    "model_introspection": {
+      "version": 1,
+      "models": {
+        "Todo": {
+          "name": "Todo",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true,
+              "attributes": []
+            },
+            "content": {
+              "name": "content",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "Todos",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "allow": "public",
+                    "provider": "apiKey",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        }
+      },
+      "enums": {
+        "ConversationParticipantRole": {
+          "name": "ConversationParticipantRole",
+          "values": [
+            "user",
+            "assistant"
+          ]
+        }
+      },
+      "nonModels": {
+        "GenerateRecipeReturnType": {
+          "name": "GenerateRecipeReturnType",
+          "fields": {
+            "name": {
+              "name": "name",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "ingredients": {
+              "name": "ingredients",
+              "isArray": true,
+              "type": "String",
+              "isRequired": false,
+              "attributes": [],
+              "isArrayNullable": true
+            },
+            "instructions": {
+              "name": "instructions",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "DocumentBlockSource": {
+          "name": "DocumentBlockSource",
+          "fields": {
+            "bytes": {
+              "name": "bytes",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "DocumentBlock": {
+          "name": "DocumentBlock",
+          "fields": {
+            "format": {
+              "name": "format",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "name": {
+              "name": "name",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "source": {
+              "name": "source",
+              "isArray": false,
+              "type": {
+                "nonModel": "DocumentBlockSource"
+              },
+              "isRequired": true,
+              "attributes": []
+            }
+          }
+        },
+        "ImageBlock": {
+          "name": "ImageBlock",
+          "fields": {
+            "format": {
+              "name": "format",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "source": {
+              "name": "source",
+              "isArray": false,
+              "type": {
+                "nonModel": "ImageBlockSource"
+              },
+              "isRequired": true,
+              "attributes": []
+            }
+          }
+        },
+        "ImageBlockSource": {
+          "name": "ImageBlockSource",
+          "fields": {
+            "bytes": {
+              "name": "bytes",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "ToolUseBlock": {
+          "name": "ToolUseBlock",
+          "fields": {
+            "toolUseId": {
+              "name": "toolUseId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "name": {
+              "name": "name",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "input": {
+              "name": "input",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": true,
+              "attributes": []
+            }
+          }
+        },
+        "ToolResultContentBlock": {
+          "name": "ToolResultContentBlock",
+          "fields": {
+            "document": {
+              "name": "document",
+              "isArray": false,
+              "type": {
+                "nonModel": "DocumentBlock"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "image": {
+              "name": "image",
+              "isArray": false,
+              "type": {
+                "nonModel": "ImageBlock"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "json": {
+              "name": "json",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false,
+              "attributes": []
+            },
+            "text": {
+              "name": "text",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "ToolResultBlock": {
+          "name": "ToolResultBlock",
+          "fields": {
+            "content": {
+              "name": "content",
+              "isArray": true,
+              "type": {
+                "nonModel": "ToolResultContentBlock"
+              },
+              "isRequired": true,
+              "attributes": [],
+              "isArrayNullable": false
+            },
+            "toolUseId": {
+              "name": "toolUseId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "status": {
+              "name": "status",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "ContentBlockText": {
+          "name": "ContentBlockText",
+          "fields": {
+            "text": {
+              "name": "text",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "ContentBlockImage": {
+          "name": "ContentBlockImage",
+          "fields": {
+            "image": {
+              "name": "image",
+              "isArray": false,
+              "type": {
+                "nonModel": "ImageBlock"
+              },
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "ContentBlockDocument": {
+          "name": "ContentBlockDocument",
+          "fields": {
+            "document": {
+              "name": "document",
+              "isArray": false,
+              "type": {
+                "nonModel": "DocumentBlock"
+              },
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "ContentBlockToolUse": {
+          "name": "ContentBlockToolUse",
+          "fields": {
+            "toolUse": {
+              "name": "toolUse",
+              "isArray": false,
+              "type": {
+                "nonModel": "ToolUseBlock"
+              },
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "ContentBlockToolResult": {
+          "name": "ContentBlockToolResult",
+          "fields": {
+            "toolResult": {
+              "name": "toolResult",
+              "isArray": false,
+              "type": {
+                "nonModel": "ToolResultBlock"
+              },
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "ContentBlock": {
+          "name": "ContentBlock",
+          "fields": {
+            "text": {
+              "name": "text",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "document": {
+              "name": "document",
+              "isArray": false,
+              "type": {
+                "nonModel": "DocumentBlock"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "image": {
+              "name": "image",
+              "isArray": false,
+              "type": {
+                "nonModel": "ImageBlock"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "toolResult": {
+              "name": "toolResult",
+              "isArray": false,
+              "type": {
+                "nonModel": "ToolResultBlock"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "toolUse": {
+              "name": "toolUse",
+              "isArray": false,
+              "type": {
+                "nonModel": "ToolUseBlock"
+              },
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "ToolConfiguration": {
+          "name": "ToolConfiguration",
+          "fields": {
+            "tools": {
+              "name": "tools",
+              "isArray": true,
+              "type": {
+                "nonModel": "Tool"
+              },
+              "isRequired": false,
+              "attributes": [],
+              "isArrayNullable": true
+            }
+          }
+        },
+        "Tool": {
+          "name": "Tool",
+          "fields": {
+            "toolSpec": {
+              "name": "toolSpec",
+              "isArray": false,
+              "type": {
+                "nonModel": "ToolSpecification"
+              },
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "ToolSpecification": {
+          "name": "ToolSpecification",
+          "fields": {
+            "name": {
+              "name": "name",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "description": {
+              "name": "description",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "inputSchema": {
+              "name": "inputSchema",
+              "isArray": false,
+              "type": {
+                "nonModel": "ToolInputSchema"
+              },
+              "isRequired": true,
+              "attributes": []
+            }
+          }
+        },
+        "ToolInputSchema": {
+          "name": "ToolInputSchema",
+          "fields": {
+            "json": {
+              "name": "json",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        }
+      },
+      "generations": {
+        "generateRecipe": {
+          "name": "generateRecipe",
+          "isArray": false,
+          "type": {
+            "nonModel": "GenerateRecipeReturnType"
+          },
+          "isRequired": false,
+          "arguments": {
+            "description": {
+              "name": "description",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            }
+          }
+        }
+      },
+      "conversations": {
+        "chat": {
+          "name": "chat",
+          "models": {
+            "ConversationChat": {
+              "name": "ConversationChat",
+              "fields": {
+                "id": {
+                  "name": "id",
+                  "type": "ID",
+                  "attributes": [],
+                  "isArray": false,
+                  "isRequired": true
+                },
+                "name": {
+                  "name": "name",
+                  "type": "String",
+                  "attributes": [],
+                  "isArray": false,
+                  "isRequired": false
+                },
+                "metadata": {
+                  "name": "metadata",
+                  "type": "AWSJSON",
+                  "attributes": [],
+                  "isArray": false,
+                  "isRequired": false
+                },
+                "messages": {
+                  "name": "messages",
+                  "type": {
+                    "model": "ConversationMessageChat"
+                  },
+                  "attributes": [],
+                  "isArray": true,
+                  "isRequired": false,
+                  "isArrayNullable": true,
+                  "association": {
+                    "connectionType": "HAS_MANY",
+                    "associatedWith": [
+                      "conversationId"
+                    ]
+                  }
+                },
+                "createdAt": {
+                  "name": "createdAt",
+                  "type": "AWSDateTime",
+                  "attributes": [],
+                  "isArray": false,
+                  "isRequired": false,
+                  "isReadOnly": true
+                },
+                "updatedAt": {
+                  "name": "updatedAt",
+                  "type": "AWSDateTime",
+                  "attributes": [],
+                  "isArray": false,
+                  "isRequired": false,
+                  "isReadOnly": true
+                }
+              },
+              "syncable": true,
+              "pluralName": "ConversationChats",
+              "attributes": [
+                {
+                  "type": "model",
+                  "properties": {
+                    "subscriptions": {
+                      "level": "off"
+                    },
+                    "mutations": {
+                      "update": null
+                    }
+                  }
+                },
+                {
+                  "type": "auth",
+                  "properties": {
+                    "rules": [
+                      {
+                        "provider": "userPools",
+                        "ownerField": "owner",
+                        "allow": "owner",
+                        "identityClaim": "cognito:username",
+                        "operations": [
+                          "create",
+                          "update",
+                          "delete",
+                          "read"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "primaryKeyInfo": {
+                "isCustomPrimaryKey": false,
+                "primaryKeyFieldName": "id",
+                "sortKeyFieldNames": []
+              }
+            },
+            "ConversationMessageChat": {
+              "name": "ConversationMessageChat",
+              "fields": {
+                "id": {
+                  "name": "id",
+                  "type": "ID",
+                  "attributes": [],
+                  "isArray": false,
+                  "isRequired": true
+                },
+                "conversationId": {
+                  "name": "conversationId",
+                  "type": "ID",
+                  "attributes": [],
+                  "isArray": false,
+                  "isRequired": true
+                },
+                "conversation": {
+                  "name": "conversation",
+                  "type": {
+                    "model": "ConversationChat"
+                  },
+                  "attributes": [],
+                  "isArray": false,
+                  "isRequired": false,
+                  "association": {
+                    "connectionType": "BELONGS_TO",
+                    "targetNames": [
+                      "conversationId"
+                    ]
+                  }
+                },
+                "role": {
+                  "name": "role",
+                  "type": {
+                    "enum": "ConversationParticipantRole"
+                  },
+                  "attributes": [],
+                  "isArray": false,
+                  "isRequired": false
+                },
+                "content": {
+                  "name": "content",
+                  "type": {
+                    "nonModel": "ContentBlock"
+                  },
+                  "attributes": [],
+                  "isArray": true,
+                  "isRequired": false
+                },
+                "aiContext": {
+                  "name": "aiContext",
+                  "type": "AWSJSON",
+                  "attributes": [],
+                  "isArray": false,
+                  "isRequired": false
+                },
+                "toolConfiguration": {
+                  "name": "toolConfiguration",
+                  "type": {
+                    "nonModel": "ToolConfiguration"
+                  },
+                  "attributes": [],
+                  "isArray": true,
+                  "isRequired": false,
+                  "isArrayNullable": true
+                },
+                "createdAt": {
+                  "name": "createdAt",
+                  "type": "AWSDateTime",
+                  "attributes": [],
+                  "isArray": false,
+                  "isRequired": false,
+                  "isReadOnly": true
+                },
+                "updatedAt": {
+                  "name": "updatedAt",
+                  "type": "AWSDateTime",
+                  "attributes": [],
+                  "isArray": false,
+                  "isRequired": false,
+                  "isReadOnly": true
+                }
+              },
+              "syncable": true,
+              "pluralName": "ConversationMessageChats",
+              "attributes": [
+                {
+                  "type": "model",
+                  "properties": {
+                    "subscriptions": {},
+                    "mutations": {
+                      "update": null
+                    }
+                  }
+                },
+                {
+                  "type": "auth",
+                  "properties": {
+                    "rules": [
+                      {
+                        "provider": "userPools",
+                        "ownerField": "owner",
+                        "allow": "owner",
+                        "identityClaim": "cognito:username",
+                        "operations": [
+                          "create",
+                          "update",
+                          "delete",
+                          "read"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "primaryKeyInfo": {
+                "isCustomPrimaryKey": false,
+                "primaryKeyFieldName": "id",
+                "sortKeyFieldNames": []
+              }
+            }
+          },
+          "nonModels": {},
+          "enums": {
+            "ConversationParticipantRole": {
+              "name": "ConversationParticipantRole",
+              "values": [
+                "user",
+                "assistant"
+              ]
+            }
+          },
+          "conversation": {
+            "modelName": "ConversationChat"
+          },
+          "message": {
+            "modelName": "ConversationMessageChat",
+            "send": {
+              "name": "chat",
+              "isArray": false,
+              "type": {
+                "model": "ConversationMessageChat"
+              },
+              "isRequired": false,
+              "arguments": {
+                "conversationId": {
+                  "name": "conversationId",
+                  "isArray": false,
+                  "type": "ID",
+                  "isRequired": true
+                },
+                "content": {
+                  "name": "content",
+                  "isArray": true,
+                  "type": {
+                    "input": "ContentBlockInput"
+                  },
+                  "isRequired": false,
+                  "isArrayNullable": true
+                },
+                "aiContext": {
+                  "name": "aiContext",
+                  "isArray": false,
+                  "type": "AWSJSON",
+                  "isRequired": false
+                },
+                "toolConfiguration": {
+                  "name": "toolConfiguration",
+                  "isArray": false,
+                  "type": {
+                    "input": "ToolConfigurationInput"
+                  },
+                  "isRequired": false
+                }
+              }
+            },
+            "subscribe": {
+              "isArray": false,
+              "isRequired": false,
+              "name": "onCreateAssistantResponseChat",
+              "type": {
+                "model": "ConversationMessageChat"
+              },
+              "arguments": {
+                "conversationId": {
+                  "name": "conversationId",
+                  "isArray": false,
+                  "isRequired": true,
+                  "type": "ID"
+                }
+              }
+            }
+          }
+        }
+      },
+      "inputs": {
+        "DocumentBlockSourceInput": {
+          "name": "DocumentBlockSourceInput",
+          "attributes": {
+            "bytes": {
+              "name": "bytes",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            }
+          }
+        },
+        "DocumentBlockInput": {
+          "name": "DocumentBlockInput",
+          "attributes": {
+            "format": {
+              "name": "format",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "name": {
+              "name": "name",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "source": {
+              "name": "source",
+              "isArray": false,
+              "type": {
+                "input": "DocumentBlockSourceInput"
+              },
+              "isRequired": true
+            }
+          }
+        },
+        "ImageBlockSourceInput": {
+          "name": "ImageBlockSourceInput",
+          "attributes": {
+            "bytes": {
+              "name": "bytes",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            }
+          }
+        },
+        "ImageBlockInput": {
+          "name": "ImageBlockInput",
+          "attributes": {
+            "format": {
+              "name": "format",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "source": {
+              "name": "source",
+              "isArray": false,
+              "type": {
+                "input": "ImageBlockSourceInput"
+              },
+              "isRequired": true
+            }
+          }
+        },
+        "ToolUseBlockInput": {
+          "name": "ToolUseBlockInput",
+          "attributes": {
+            "toolUseId": {
+              "name": "toolUseId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "name": {
+              "name": "name",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "input": {
+              "name": "input",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": true
+            }
+          }
+        },
+        "ToolResultContentBlockInput": {
+          "name": "ToolResultContentBlockInput",
+          "attributes": {
+            "document": {
+              "name": "document",
+              "isArray": false,
+              "type": {
+                "input": "DocumentBlockInput"
+              },
+              "isRequired": false
+            },
+            "image": {
+              "name": "image",
+              "isArray": false,
+              "type": {
+                "input": "ImageBlockInput"
+              },
+              "isRequired": false
+            },
+            "json": {
+              "name": "json",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false
+            },
+            "text": {
+              "name": "text",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            }
+          }
+        },
+        "ToolResultBlockInput": {
+          "name": "ToolResultBlockInput",
+          "attributes": {
+            "content": {
+              "name": "content",
+              "isArray": true,
+              "type": {
+                "input": "ToolResultContentBlockInput"
+              },
+              "isRequired": true,
+              "isArrayNullable": false
+            },
+            "toolUseId": {
+              "name": "toolUseId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "status": {
+              "name": "status",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            }
+          }
+        },
+        "ContentBlockInput": {
+          "name": "ContentBlockInput",
+          "attributes": {
+            "text": {
+              "name": "text",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "document": {
+              "name": "document",
+              "isArray": false,
+              "type": {
+                "input": "DocumentBlockInput"
+              },
+              "isRequired": false
+            },
+            "image": {
+              "name": "image",
+              "isArray": false,
+              "type": {
+                "input": "ImageBlockInput"
+              },
+              "isRequired": false
+            },
+            "toolResult": {
+              "name": "toolResult",
+              "isArray": false,
+              "type": {
+                "input": "ToolResultBlockInput"
+              },
+              "isRequired": false
+            },
+            "toolUse": {
+              "name": "toolUse",
+              "isArray": false,
+              "type": {
+                "input": "ToolUseBlockInput"
+              },
+              "isRequired": false
+            }
+          }
+        },
+        "ToolConfigurationInput": {
+          "name": "ToolConfigurationInput",
+          "attributes": {
+            "tools": {
+              "name": "tools",
+              "isArray": true,
+              "type": {
+                "input": "ToolInput"
+              },
+              "isRequired": false,
+              "isArrayNullable": true
+            }
+          }
+        },
+        "ToolInput": {
+          "name": "ToolInput",
+          "attributes": {
+            "toolSpec": {
+              "name": "toolSpec",
+              "isArray": false,
+              "type": {
+                "input": "ToolSpecificationInput"
+              },
+              "isRequired": false
+            }
+          }
+        },
+        "ToolSpecificationInput": {
+          "name": "ToolSpecificationInput",
+          "attributes": {
+            "name": {
+              "name": "name",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "description": {
+              "name": "description",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "inputSchema": {
+              "name": "inputSchema",
+              "isArray": false,
+              "type": {
+                "input": "ToolInputSchemaInput"
+              },
+              "isRequired": true
+            }
+          }
+        },
+        "ToolInputSchemaInput": {
+          "name": "ToolInputSchemaInput",
+          "attributes": {
+            "json": {
+              "name": "json",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "version": "1.2"
+}
