@@ -12,7 +12,7 @@ const schema = a.schema({
   // This adds a new generation route to your Amplify Data backend
   generateRecipe: a
     .generation({
-      aiModel: a.ai.model('Claude 3 Haiku'),
+      aiModel: a.ai.model('Claude 3.5 Sonnet v2'),
       systemPrompt: 'You are a helpful assistant that generates recipes.',
     })
     .arguments({

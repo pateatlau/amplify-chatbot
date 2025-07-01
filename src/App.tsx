@@ -21,10 +21,10 @@ export default function App() {
   };
 
   return (
-    <section className="p-10">
+    <section className="p-10 overflow-hidden h-[90vh]">
       <Flex direction="column">
         <div className="flex flex-row justify-between align-middle">
-          <h1 className="text-3xl text-orange-600">Food Recipe Assistant</h1>
+          <h1 className="text-3xl text-orange-600">DIY Assistant</h1>
           <button
             className="p-2 text-white bg-red-500 border rounded-md cursor-pointer border-neutral-500 hover:bg-red-700"
             onClick={signOut}
@@ -44,13 +44,13 @@ export default function App() {
             onClick={handleClick}
             variation="primary"
           >
-            Generate recipe
+            Submit Prompt
           </Button>
         </Flex>
         {isLoading ? (
           <Loader variation="linear" />
         ) : (
-          <div className="p-5 mt-5 overflow-auto border-2 border-gray-200 rounded-lg">
+          <div className="p-5 mt-5 overflow-auto border-2 border-gray-200 rounded-lg max-h-[48vh]">
             <Text fontWeight="bold">{data?.name}</Text>
             <View as="ul">
               {data?.ingredients?.map((ingredient) => (
